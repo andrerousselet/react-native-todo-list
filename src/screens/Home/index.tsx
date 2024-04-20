@@ -2,8 +2,8 @@ import { Text, View } from "react-native";
 
 export function Home() {
   return (
-    <View className="flex-1 items-center justify-center bg-black">
-      <Text className="text-white text-lg">Hello world!!</Text>
+    <View className="flex-1 items-center justify-center">
+      <Text className="text-zinc-100 text-lg">Hello world!!</Text>
     </View>
   );
 }
