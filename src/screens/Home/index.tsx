@@ -1,3 +1,4 @@
+import { Task } from "@/components/Task";
 import { useState } from "react";
 import {
   Alert,
@@ -7,6 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 export function Home() {
   const [tasks, setTasks] = useState<string[]>([]);
@@ -20,9 +23,13 @@ export function Home() {
     setNewTask("");
   }
 
+  function handleRemoveTask(task: string) {
+    setTasks((prevTasks) => prevTasks.filter((prevTask) => prevTask !== task));
+  }
+
   return (
-    <View className="flex-1 items-center justify-center">
-      <View className="-top-6 flex-row items-center justify-center px-4 gap-x-2">
+    <View className="flex-1 items-center justify-center w-full">
+      <View className="-top-6 flex-row items-center justify-center gap-x-2">
         <TextInput
           placeholder="Adicione uma nova tarefa"
           placeholderTextColor="#a1a1aa"
@@ -34,25 +41,27 @@ export function Home() {
           className="relative rounded-md bg-sky-700 h-12 w-12 flex items-center justify-center"
           onPress={handleAddTask}
         >
-          <View className="bg-sky-600 rounded-full w-5 h-5 border border-zinc-200 flex items-center justify-center">
-            <Text className="text-zinc-200 text-center">+</Text>
-          </View>
+          <Ionicons name="add-circle-outline" size={24} color="#e4e4e7" />
         </TouchableOpacity>
       </View>
-      <View className="flex-1 items-center justify-center">
+      <View className="flex-1 items-center justify-center w-full">
         <FlatList
+          className="w-full"
           data={tasks}
           keyExtractor={(item) => item}
-          renderItem={({ item }) => <Text>{item}</Text>}
+          renderItem={({ item: task }) => (
+            <Task key={task} task={task} onRemove={handleRemoveTask} />
+          )}
           ListEmptyComponent={() => (
-            <>
-              <Text className="text-zinc-400">
+            <View className="flex items-center justify-center">
+              <FontAwesome5 name="clipboard-list" size={64} color="#27272a" />
+              <Text className="text-zinc-400 mt-4">
                 Você ainda não tem tarefas cadastradas.
               </Text>
               <Text className="text-zinc-500">
-                Crie tarefas e organize seus itens a fazer.
+                Crie tarefas e organize seu dia!
               </Text>
-            </>
+            </View>
           )}
         />
       </View>
