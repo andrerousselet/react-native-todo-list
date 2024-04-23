@@ -1,20 +1,41 @@
 import { TouchableOpacity, View, Text } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 type TaskProps = {
+  id: string;
   task: string;
-  onRemove: (task: string) => void;
+  isDone: boolean;
+  onRemove: () => void;
+  onUpdate: () => void;
 };
 
-export function Task({ task, onRemove }: TaskProps) {
+export function Task({
+  id,
+  task,
+  isDone = false,
+  onRemove,
+  onUpdate,
+}: TaskProps) {
   return (
     <View className="flex flex-row items-center justify-between bg-zinc-800 p-2 rounded-md mb-2">
-      <Text className="text-zinc-200">{task}</Text>
+      <View className="flex-row items-center justify-center gap-x-2">
+        <TouchableOpacity
+          className="h-8 w-8 flex items-center justify-center"
+          onPress={onUpdate}
+        >
+          {isDone ? (
+            <FontAwesome name="check-circle" size={24} color="#e4e4e7" />
+          ) : (
+            <FontAwesome name="circle-thin" size={24} color="#e4e4e7" />
+          )}
+        </TouchableOpacity>
+        <Text className="text-zinc-200">{task}</Text>
+      </View>
       <TouchableOpacity
-        className="rounded-md h-8 w-8 flex items-center justify-center"
-        onPress={() => onRemove(task)}
+        className="h-8 w-8 flex items-center justify-center"
+        onPress={onRemove}
       >
-        <Ionicons name="trash" size={20} color="#e4e4e7" />
+        <FontAwesome name="trash-o" size={20} color="#e4e4e7" />
       </TouchableOpacity>
     </View>
   );
