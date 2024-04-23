@@ -24,12 +24,18 @@ export function Task({
           onPress={onUpdate}
         >
           {isDone ? (
-            <FontAwesome name="check-circle" size={24} color="#e4e4e7" />
+            <FontAwesome name="check-circle" size={24} color="#38bdf8" />
           ) : (
-            <FontAwesome name="circle-thin" size={24} color="#e4e4e7" />
+            <FontAwesome name="circle-thin" size={24} color="#0e7490" />
           )}
         </TouchableOpacity>
-        <Text className="text-zinc-200">{task}</Text>
+        <Text
+          className={`text-zinc-200 uppercase text-sm ${
+            isDone && "line-through text-zinc-400"
+          }`}
+        >
+          {task}
+        </Text>
       </View>
       <TouchableOpacity
         className="h-8 w-8 flex items-center justify-center"
