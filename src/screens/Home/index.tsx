@@ -11,6 +11,7 @@ import {
 import Ionicons from "@expo/vector-icons/Ionicons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import uuid from "react-native-uuid";
+import { Counters } from "@/components/Counter";
 
 type Task = {
   id: string;
@@ -21,6 +22,8 @@ type Task = {
 export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState("");
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter((tasks) => tasks.isDone).length;
 
   function handleAddTask() {
     if (!newTask) {
@@ -62,6 +65,7 @@ export function Home() {
         </TouchableOpacity>
       </View>
       <View className="flex-1 items-center justify-center w-full">
+        <Counters totalTasks={totalTasks} completedTasks={completedTasks} />
         <FlatList
           className="w-full"
           data={tasks}

@@ -26,7 +26,7 @@ export function Task({
           {isDone ? (
             <FontAwesome name="check-circle" size={24} color="#38bdf8" />
           ) : (
-            <FontAwesome name="circle-thin" size={24} color="#0e7490" />
+            <FontAwesome name="circle-thin" size={24} color="#0369a1" />
           )}
         </TouchableOpacity>
         <Text
