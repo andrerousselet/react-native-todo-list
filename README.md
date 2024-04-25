@@ -12,5 +12,4 @@ Practicing react-native fundamentals
 
 ---
 
-https://github.com/andrerousselet/react-native-todo-list/assets/90053210/34681d98-316a-41d4-9717-5a9752991c8c
-
+<img src="https://github.com/andrerousselet/react-native-todo-list/assets/90053210/290cb2bf-5655-4199-a624-af3dd91da389" width="300" />
